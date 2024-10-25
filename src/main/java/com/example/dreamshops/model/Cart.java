@@ -46,4 +46,8 @@ public class Cart {
             return unitPrice.multiply(BigDecimal.valueOf(item.getQuantity()));
         }).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
+    @OneToOne
+    @JoinColumn(name="user_id")
+    private User user;
 }
