@@ -10,7 +10,6 @@ import com.example.dreamshops.model.Product;
 import com.example.dreamshops.repository.OrderRepository;
 import com.example.dreamshops.repository.ProductRepository;
 import com.example.dreamshops.service.cart.CartService;
-import com.example.dreamshops.service.order.IOrderService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -85,7 +84,8 @@ public class OrderService implements IOrderService {
         return  orders.stream().map(this :: convertToDto).toList();
     }
 
-    private OrderDto convertToDto(Order order) {
+    @Override
+    public OrderDto convertToDto(Order order) {
         return modelMapper.map(order, OrderDto.class);
     }
 }

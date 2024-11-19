@@ -22,7 +22,8 @@ public class OrderController {
     public ResponseEntity<ApiResponse> createOrder(@RequestParam Long userId) {
         try {
             Order order =  orderService.placeOrder(userId);
-            return ResponseEntity.ok(new ApiResponse("Item Order Success!", order));
+            OrderDto orderDto = orderService.convertToDto(order);
+            return ResponseEntity.ok(new ApiResponse("Item Order Success!", orderDto));
         } catch (Exception e) {
             return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Error Occurred!", e.getMessage()));
         }
